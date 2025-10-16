@@ -148,7 +148,7 @@ function Register() {
                 type="submit"
                 disabled={sunmitting}
               >
-                {sunmitting ? "Cargando..." : "Registrarte"}
+                {sunmitting ? <div className="spinner" /> : "Registrarte"}
               </button>
               {error && <p className="error">{error}</p>}
               <div className="social-register">
