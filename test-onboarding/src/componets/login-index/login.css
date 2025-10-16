@@ -187,3 +187,13 @@ input[type="password"] {
   }
 
 }
+
+.toggle-password {
+  position: absolute;
+  right: 4%;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #575757;
+  font-size: 1.2rem;
+}
