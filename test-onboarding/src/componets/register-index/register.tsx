@@ -3,11 +3,11 @@ import facebookIcon from "../../assets/Facebook.png";
 import appleIcon from "../../assets/apple.png";
 import googleIcon from "../../assets/google.png";
 import compensar from "../../assets/Group 1.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./register.css";
 import { useNavigate } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
-
+import RegisterSkeleton from "./Skeletor-register";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -17,6 +17,7 @@ function Register() {
   const [confirmPassword, setconfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [sunmitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -64,6 +65,15 @@ function Register() {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, []);
+    if (loading) {
+      return RegisterSkeleton();
+    } else {
       return (
         <div className="register-container">
           <img
@@ -168,4 +178,5 @@ function Register() {
         </div>
       );
     }
+  };
 export default Register;
