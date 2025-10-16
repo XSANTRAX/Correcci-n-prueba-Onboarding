@@ -115,10 +115,13 @@ function Register() {
               <input
                 type="tel"
                 name="phone"
+                pattern="\d*"
+                inputMode="numeric"
                 placeholder="Número de celular"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
+                title="Digita solo números..."
               />
               <div style={{ position: "relative", width: "100%" }}>
                 <input
