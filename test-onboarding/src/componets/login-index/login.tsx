@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -69,10 +72,29 @@ function Login() {
           <h2>Iniciar sesión</h2>
           <input
             type="email"
+            name="email"
             placeholder="Email o nombre de usuario"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input type="password" placeholder="Contraseña" required />
+          <div style={{ position: "relative", width: "100%" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Contraseña"
+              className="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <i
+              className={`fa-solid ${
+                showPassword ? "fa-eye-slash" : "fa-eye"
+              } toggle-password`}
+              onClick={() => setShowPassword(!showPassword)}
+            ></i>
+          </div>
           <div className="login-options">
             <a href="" className="link_olvidar">
               Olvide mi contraseña
