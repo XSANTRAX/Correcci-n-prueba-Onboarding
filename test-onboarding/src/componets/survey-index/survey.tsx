@@ -56,6 +56,10 @@ function Survey() {
     if (form && confirmacion) {
       form.style.display = "none";
       confirmacion.style.display = "block";
+      setTimeout(() => {
+      cerrarConfirmacion();
+      navigate("/info-survey");
+    }, 2000);
     }
   }
 
@@ -75,6 +79,7 @@ function Survey() {
       setLoading(false);
     }, 500);
   }, []);
+
   if (loading) {
     return SurveySkeleton();
   } else {
@@ -188,7 +193,7 @@ function Survey() {
               <img src={confirm} alt="Icono de confirmacion" />
             </div>
             <p>Tus respuestas se han guardado de forma correcta</p>
-            <button onClick={cerrarConfirmacion}>Siguiente</button>
+            <p>Redirigiendo...</p>
           </div>
         </div>
       </div>
