@@ -1,10 +1,15 @@
 import compensar from "../../assets/Group 1.png";
 import confirm from "../../assets/Illustration.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./Survey.css";
 
 function Survey() {
+  const [sunmitting, setSubmitting] = useState(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     const user = sessionStorage.getItem("user");
     const form = event.currentTarget;
     const fecha = (form.fecha as HTMLInputElement).value;
@@ -12,6 +17,7 @@ function Survey() {
     const tipo2 = (form.tipo2 as RadioNodeList).value;
     const tipo3 = (form.tipo3 as RadioNodeList).value;
     const tipo4 = (form.tipo4 as RadioNodeList).value;
+    setSubmitting(true);
 
     const usersApi = fetch(
       `https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/survey`,
@@ -34,10 +40,10 @@ function Survey() {
           mostrarConfirmacion();
         } else {
           alert("Error al enviar encuesta");
+          setSubmitting(false);
         }
       });
     });
-    event.preventDefault();
   };
   const navigate = useNavigate();
 
@@ -157,8 +163,9 @@ function Survey() {
               type="submit"
               value="enviar"
               id="btnenviar"
+              disabled={sunmitting}
             >
-              Enviar
+              {sunmitting ? <div className="spinner" /> : "Enviar Encuesta"}
             </button>
           </div>
         </form>
