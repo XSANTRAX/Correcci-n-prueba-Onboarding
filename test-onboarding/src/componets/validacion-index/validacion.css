@@ -74,3 +74,27 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 480px) {
+  .estado-encuesta {
+    position: static;
+    transform: none;
+    margin: 18rem auto 8rem auto;;
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .estado-encuesta h2 {
+    font-size: 1.2rem;
+  }
+
+  .estado-label {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+
+  .btn-accion {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
