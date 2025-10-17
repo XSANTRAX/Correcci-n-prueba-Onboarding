@@ -1,9 +1,10 @@
 h1{
+text-align: center;
   margin-top: 0%;
   margin-bottom: 10%;
 }
 
-.icono_survey{
+.icono_info{
   position: fixed;
   top: 20px;          
   left: 20px;           
@@ -14,14 +15,14 @@ body{
     background-color: whitesmoke;
 }
 
-.survey{
+.info-survey{
     display: flex;                  
     justify-content: center;       
     align-items: center;           
     height: 100vh;
 }
 
-.diseño{              
+.style-info{              
     padding: 2rem;                         
     border-radius: 8px;                   
     box-shadow: 0rem 0rem 10rem rgba(0, 0, 0, 0.123);  
@@ -31,11 +32,11 @@ body{
     font-family: 'poppins', sans-serif; 
 }
 
-.btm-contenedor{
+.btm-container{
     text-align: right;
 }
 
-.btm-survey{
+.btm-info{
     width: 30%;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -45,64 +46,21 @@ body{
     cursor: pointer;
 }
 
-.btm-survey:hover{
+.btm-info:hover{
     transform: scale(1.05);
 }
 
-.btm-survey:active{
+.btm-info:active{
     transform: scale(0.9);
 }
 
-input[type="radio"] {
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-}
-
-.opciones {
-  display: flex;
-  flex-direction: row; 
-  gap: 2.2rem;           
-}
-
-input[type="date"] {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 1rem;
-  cursor: pointer;
-  width: 95%;
-  margin-bottom: 1rem;
-}
-
-.confirmacion {
-  display: none; 
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  text-align: center;
-  z-index: 1000;
-  font-family: 'poppins', sans-serif;
-}
-
-.confirmacion .icono {
-  font-size: 40px;
-  color: green;
-  margin-bottom: 10px;
-}
-
-.confirmacion button {
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'poppins', sans-serif;
+.style-info label {
+  display: block;
+  margin-bottom: 8%;
+  border: #000000 solid 0.1rem;
+  background-color: rgba(224, 224, 224, 0.5);
+  border-radius: 0.2rem;
+  padding: 0.5rem;
 }
 
 .spinner {

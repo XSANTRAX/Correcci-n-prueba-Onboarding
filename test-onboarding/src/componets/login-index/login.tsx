@@ -41,8 +41,9 @@ function Login() {
         console.log(data);
         if (resp.status === 200) {
         setTimeout(() => {
-          navigate("/survey");
+          navigate("/validacion");
           sessionStorage.setItem("user", data.data.user);
+          sessionStorage.setItem("email", data.data.mail);
         }, 1000);
         } else {
           setError("Usuario o contraseña incorrectos");
