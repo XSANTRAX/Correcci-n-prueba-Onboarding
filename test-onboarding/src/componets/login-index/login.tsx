@@ -40,8 +40,10 @@ function Login() {
       resp.json().then((data) => {
         console.log(data);
         if (resp.status === 200) {
+        setTimeout(() => {
           navigate("/survey");
           sessionStorage.setItem("user", data.data.user);
+        }, 1000);
         } else {
           setError("Usuario o contraseña incorrectos");
           setSubmitting(false);
@@ -111,7 +113,7 @@ function Login() {
               </a>
             </div>
             <button className="btm-login" type="submit" disabled={sunmitting}>
-              {loading ? <div className="spinner" /> : "Iniciar sesión"}
+              {sunmitting ? <div className="spinner" /> : "Iniciar sesión"}
             </button>
             {error && <p className="error">{error}</p>}
             <div className="social-login">
