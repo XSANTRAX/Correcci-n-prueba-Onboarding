@@ -1,0 +1,175 @@
+
+.icono_register{
+  position: fixed;
+  top: 20px;          
+  left: 20px;           
+  padding: 10px 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+h2{
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.text {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 0rem;
+}
+
+.info{
+  font-size: 0.9rem;
+}
+
+a.links {
+  color: #F57C00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a.link_olvidar {
+  color: #b1b1b1;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.register-options {
+  width: 100%;           
+  text-align: right;     
+  margin-top: 0.5rem;
+}
+
+.btm-register {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  background-color: #F57C00;
+  color: white;
+  border: none;
+  margin-bottom: 2rem;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.register-container {
+  font-family: 'poppins', sans-serif;
+  display: flex;
+  justify-content: center;     
+  align-items: center;
+  text-align: left;         
+  height: 100vh;
+  gap: 16rem;                  
+}
+
+.register-left {
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; 
+  text-align: left;
+  padding-left: 1rem;      
+}
+
+.register-right {
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;      
+}
+
+.img-1 {
+  max-width: 260px;
+  height: auto;
+  margin-top: -8rem;
+  margin-left: 20rem;
+  align-self: flex-start;
+}
+
+.social-register {
+  margin-top: 1rem;
+  text-align:  center;
+}
+
+.social-register p {
+  color: rgba(0, 0, 0, 0.24);
+}
+
+.social-register img{
+  max-width: 40px;
+}
+
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="text"]{
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 480px) {
+  .register-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .register-left{
+    display: none;
+  }
+  .register-right {
+    margin-top: 5rem;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .img-1 {
+    display: none;
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #F57C00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toggle-password {
+  position: absolute;
+  right: 4%;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #575757;
+  font-size: 1.2rem;
+}
