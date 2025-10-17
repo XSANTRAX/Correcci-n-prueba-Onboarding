@@ -101,7 +101,7 @@ function Login() {
             </a>
           </div>
           <button className="btm-login" type="submit" disabled={loading}>
-            {loading ? "Cargando..." : "Iniciar sesión"}
+            {loading ? <div className="spinner" /> : "Iniciar sesión"}
           </button>
           {error && <p className="error">{error}</p>}
           <div className="social-login">
