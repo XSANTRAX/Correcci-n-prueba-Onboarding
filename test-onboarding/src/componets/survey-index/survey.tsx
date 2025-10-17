@@ -57,9 +57,9 @@ function Survey() {
       form.style.display = "none";
       confirmacion.style.display = "block";
       setTimeout(() => {
-      cerrarConfirmacion();
-      navigate("/info-survey");
-    }, 2000);
+        cerrarConfirmacion();
+        navigate("/info-survey");
+      }, 2000);
     }
   }
 
