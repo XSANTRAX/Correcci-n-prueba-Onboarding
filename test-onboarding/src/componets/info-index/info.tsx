@@ -50,6 +50,23 @@ function InfoSurvey() {
       setLoading(false);
     }, 500);
   }, []);
+
+  let fecha = "";
+  let r1 = "";
+  let r2 = "";
+  let r3 = "";
+  let r4 = "";
+
+  if (survey) {
+    const limpio = survey.replace(/^"|"$/g, "");
+    const partes = limpio.split(",");
+    fecha = partes[0]?.split(":")[1]?.trim() || "";
+    r1 = partes[1]?.split(":")[1]?.trim() || "";
+    r2 = partes[2]?.split(":")[1]?.trim() || "";
+    r3 = partes[3]?.split(":")[1]?.trim() || "";
+    r4 = partes[4]?.split(":")[1]?.trim() || "";
+  }
+
   if (loading) {
     return InfoSkeleton();
   } else {
@@ -59,10 +76,24 @@ function InfoSurvey() {
         <div className="style-info">
           <h1>Información</h1>
           <div>
-            <label htmlFor="name">Nombre: {name}</label>
-            <label htmlFor="email">Email: {email}</label>
-            <label htmlFor="phone">Teléfono: {phone}</label>
-            <label htmlFor="survey">Encuesta: {survey}</label>
+            <label htmlFor="name"><strong>Nombre:</strong> {name}</label>
+            <label htmlFor="email"><strong>Email:</strong> {email}</label>
+            <label htmlFor="phone"><strong>Teléfono:</strong> {phone}</label>
+            <label>
+              <strong>Fecha:</strong> {fecha}
+            </label>
+            <label>
+              <strong>Pregunta 1:</strong> {r1}
+            </label>
+            <label>
+              <strong>Pregunta 2:</strong> {r2}
+            </label>
+            <label>
+              <strong>Pregunta 3:</strong> {r3}
+            </label>
+            <label>
+              <strong>Pregunta 4:</strong> {r4}
+            </label>
           </div>
           <div className="btm-container">
             <button
