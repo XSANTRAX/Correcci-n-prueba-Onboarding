@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+# Prueba Técnica - Test de Onboarding
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](https://img.shields.io/badge/React-19.1.1-blue?style=flat-square&logo=react)
+![](https://img.shields.io/badge/TypeScript-5.9.3-blue?style=flat-square&logo=typescript)
+![](https://img.shields.io/badge/Vite-7.1.7-purple?style=flat-square&logo=vite)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Hola!, mi nombre es Angel Santiago Poveda Nocua, practicante de la empresa de Compensar como desarrollador. Disfrute mucho la realización de esta prueba tecnica. En la cual aprendi demasiadas cosas relacionada con React, TypeScript y Vite. En este caso utilice TypesScript dado que es un lenguaje de programación que he querido aprender a utilizar a pesar de no tener mucho cnonocimiento en este lenguaje.
 
-## React Compiler
+A continuación, podran encontrar una descripción del proyecto.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dentro se encontrarán la siguiente carpeta:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+-[Frontend](https://github.com/XSANTRAX/prueba-Test-Onboarding/tree/main/Test-Onboarding/src): La cual contiene el desarrollo de toda la parte visual del proyecto, el cual fue desarrollado con React en la versión 19.1.1, TypeScript en la versión 5.9.3 y Vite en la versión 7.1.7.
+```
+La forma de ejecutar el proyecto es con el script: npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+En este proyecto se uso la extensión de react-router-dom para el manejo de las rutas, la forma de instalar esta dependencia es con el scirpt: npm install react-router-dom
+```
+
+```
+Ademas tambien se utilizo la extensión de react-loading-skeleton para el manejo de los componentes de carga, la forma de instalar esta dependencia es con el scirpt: npm install react-loading-skeleton
+```
+
+Estado del proyecto:
+```
+-Funcionalidad completa
+```
+
+```
+-Posibles mejoras: Diseño responsivo implementado para vista de tablet 
+```
+
+Gracias por la oportunidad de realizar esta prueba tecnica y poder adquirir conocimientos sobre React, TypeScript y Vite.
