@@ -11,6 +11,7 @@ function Validación() {
   const [sunmittingSurvey, setSubmittingSurvey] = useState(false);
   const [sunmittingLogin, setSubmittingLogin] = useState(false);
   const [sunmittingInfo, setSubmittingInfo] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function Validación() {
           }
         } else {
           alert("Error en el servidor");
+          setServerError(true);
         }
       });
     });
@@ -106,10 +108,12 @@ function Validación() {
                   navigate("/survey");
                 }, 500);
               }}
-              disabled={sunmittingSurvey}
+              disabled={sunmittingSurvey || serverError}
             >
               {sunmittingSurvey ? (
                 <div className="spinner" />
+              ) : serverError ? (
+                `Error "Inactivo"`
               ) : (
                 "Realizar Encuesta"
               )}
