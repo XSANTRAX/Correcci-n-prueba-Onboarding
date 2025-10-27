@@ -23,23 +23,29 @@ function Validación() {
       }
     );
 
-    usersApi.then((resp) => {
-      resp.json().then((data) => {
-        console.log(data);
-        if (resp.status === 200 && data.data.survey) {
-          setMail(data.data.mail);
-          const texto = data.data.survey;
-          const match = texto.match(/fecha':(\d{4}-\d{2}-\d{2})/);
-          if (match) {
-            const fecha = match[1];
-            setFechaCompletado(fecha);
+    usersApi
+      .then((resp) => {
+        resp.json().then((data) => {
+          console.log(data);
+          if (resp.status === 200 && data.data.survey) {
+            setMail(data.data.mail);
+            const texto = data.data.survey;
+            const match = texto.match(/fecha':(\d{4}-\d{2}-\d{2})/);
+            if (match) {
+              const fecha = match[1];
+              setFechaCompletado(fecha);
+            }
+          } else {
+            alert("No se pudo conectar con el sistema. Por favor cierra sesión e inténtalo más tarde.");
+            setServerError(true);
           }
-        } else {
-          alert("Error en el servidor");
-          setServerError(true);
-        }
+        });
+      })
+      .catch((error) => {
+        console.error("Error de conexión:", error);
+        alert("No se pudo conectar con el sistema. Inténtalo más tarde.");
+        setServerError(true);
       });
-    });
   }, [email, userr]);
 
   const navigate = useNavigate();
