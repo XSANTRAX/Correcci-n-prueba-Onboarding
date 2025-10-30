@@ -8,10 +8,8 @@ function Validación() {
   const email = sessionStorage.getItem("email");
   const [mail, setMail] = useState("");
   const [fechaCompletado, setFechaCompletado] = useState("");
-  const [sunmittingSurvey, setSubmittingSurvey] = useState(false);
-  const [sunmittingLogin, setSubmittingLogin] = useState(false);
-  const [sunmittingInfo, setSubmittingInfo] = useState(false);
-  const [serverError, setServerError] = useState(false);
+  const [surveyData, setSurveyData] = useState(null);
+  const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,123 +24,113 @@ function Validación() {
     usersApi
       .then((resp) => {
         resp.json().then((data) => {
-          console.log(data);
-          if (resp.status === 200 && data.data.survey) {
-            setMail(data.data.mail);
-            const texto = data.data.survey;
-            const match = texto.match(/fecha':(\d{4}-\d{2}-\d{2})/);
-            if (match) {
-              const fecha = match[1];
-              setFechaCompletado(fecha);
+          console.log("Respuesta completa:", data);
+          if (data && data.data) {
+            const userData = data.data;
+            setMail(userData.mail || "");
+            if (userData.survey) {
+              const texto = userData.survey;
+              const match = texto.match(/fecha':([^,]+)/);
+              if (match) {
+                const fechaTexto = match[1].trim();
+                setFechaCompletado(fechaTexto);
+              }
+              setSurveyData(userData.survey);
             }
+            setIsError(false);
           } else {
-            alert("No se pudo conectar con el sistema. Por favor cierra sesión e inténtalo más tarde.");
-            setServerError(true);
+            setIsError(true);
           }
         });
       })
       .catch((error) => {
         console.error("Error de conexión:", error);
-        alert("No se pudo conectar con el sistema. Inténtalo más tarde.");
-        setServerError(true);
+        setIsError(true);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       });
   }, [email, userr]);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
   if (loading) {
     return ValueSkeleton();
-  } else {
-    if (email === mail) {
-      return (
-        <div className="estado-encuesta">
-          <h2>Encuesta</h2>
-          <div className="encuesta-completada">
-            <span className="estado-label completada">COMPLETADA</span>
-            <p>Fecha de completado: {fechaCompletado}</p>
-            <button
-              className="btn-accion"
-              onClick={() => {
-                setSubmittingInfo(true);
-                setTimeout(() => {
-                  navigate("/info-survey");
-                }, 500);
-              }}
-              disabled={sunmittingInfo}
-            >
-              {sunmittingInfo ? (
-                <div className="spinner" />
-              ) : (
-                "Ver mis respuestas"
-              )}
-            </button>
-            <br />
-            <button
-              className="btn-accion"
-              onClick={() => {
-                setSubmittingLogin(true);
-                setTimeout(() => {
-                  sessionStorage.clear();
-                  navigate("/login");
-                }, 500);
-              }}
-              disabled={sunmittingLogin}
-            >
-              {sunmittingLogin ? <div className="spinner" /> : "Cerrar Sesión"}
-            </button>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="estado-encuesta">
-          <h2>Encuesta</h2>
-
-          <div className="encuesta-pendiente">
-            <span className="estado-label pendiente">PENDIENTE</span>
-            <p>Por favor completa la encuesta...</p>
-            <button
-              className="btn-accion"
-              onClick={() => {
-                setSubmittingSurvey(true);
-                setTimeout(() => {
-                  navigate("/survey");
-                }, 500);
-              }}
-              disabled={sunmittingSurvey || serverError}
-            >
-              {sunmittingSurvey ? (
-                <div className="spinner" />
-              ) : serverError ? (
-                `Error "Inactivo"`
-              ) : (
-                "Realizar Encuesta"
-              )}
-            </button>
-            <br />
-            <button
-              className="btn-accion"
-              onClick={() => {
-                setSubmittingLogin(true);
-                setTimeout(() => {
-                  sessionStorage.clear();
-                  navigate("/login");
-                }, 500);
-              }}
-              disabled={sunmittingLogin}
-            >
-              {sunmittingLogin ? <div className="spinner" /> : "Cerrar Sesión"}
-            </button>
-          </div>
-        </div>
-      );
-    }
   }
+  if (isError) {
+    return (
+      <div className="estado-encuesta">
+        <h2>⚠️ Problema con la encuesta</h2>
+        <p>No pudimos verificar tu estado correctamente.</p>
+        <p>Pero puedes:</p>
+        <button className="btn-accion" onClick={() => window.location.reload()}>
+          Reintentar
+        </button>
+        <br />
+        <button
+          className="btn-accion"
+          onClick={() => {
+            sessionStorage.clear();
+            navigate("/login");
+          }}
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    );
+  }
+  if (email === mail && surveyData) {
+    return (
+      <div className="estado-encuesta">
+        <h2>✔ Encuesta Completada</h2>
+        <div className="encuesta-completada">
+          <span className="estado-label completada">COMPLETADA</span>
+          <p>Fecha de completado: </p>
+          <p>{fechaCompletado}</p>
+          <button
+            className="btn-accion"
+            onClick={() => navigate("/info-survey")}
+          >
+            Ver mis respuestas
+          </button>
+          <br />
+          <button
+            className="btn-accion"
+            onClick={() => {
+              sessionStorage.clear();
+              navigate("/login");
+            }}
+          >
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="estado-encuesta">
+      <h2>📝 Encuesta Pendiente</h2>
+      <div className="encuesta-pendiente">
+        <span className="estado-label pendiente">PENDIENTE</span>
+        <p>Por favor completa la encuesta...</p>
+        <button className="btn-accion" onClick={() => navigate("/survey")}>
+          Realizar Encuesta
+        </button>
+        <br />
+        <button
+          className="btn-accion"
+          onClick={() => {
+            sessionStorage.clear();
+            navigate("/login");
+          }}
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Validación;
