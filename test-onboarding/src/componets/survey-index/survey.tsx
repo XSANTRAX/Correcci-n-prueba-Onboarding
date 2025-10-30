@@ -3,7 +3,7 @@ import confirm from "../../assets/Illustration.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SurveySkeleton from "./Skeletor-survey";
-import "./Survey.css";
+import "./survey.css";
 import FechaEncuesta from "./calendario";
 
 function Survey() {
