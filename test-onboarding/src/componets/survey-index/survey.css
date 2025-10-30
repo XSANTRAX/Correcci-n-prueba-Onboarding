@@ -64,14 +64,23 @@ input[type="radio"] {
   gap: 2.2rem;           
 }
 
-input[type="date"] {
-  padding: 10px;
-  font-size: 16px;
+.bloque-fecha {
+  margin-bottom: 1.5rem; 
+}
+
+.bloque-fecha label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.date-picker {
+  width: 100%;
+  padding: 0.5rem;
   border: 1px solid #ccc;
-  border-radius: 1rem;
-  cursor: pointer;
-  width: 95%;
-  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
 }
 
 .confirmacion {

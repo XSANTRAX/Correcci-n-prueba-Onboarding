@@ -4,17 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SurveySkeleton from "./Skeletor-survey";
 import "./Survey.css";
+import FechaEncuesta from "./calendario";
 
 function Survey() {
   const [sunmitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [fecha, setFecha] = useState<Date | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const opciones: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    const fechaFormateada = fecha?.toLocaleDateString("es-ES", opciones);
+
     const user = sessionStorage.getItem("user");
     const form = event.currentTarget;
-    const fecha = (form.fecha as HTMLInputElement).value;
     const tipo1 = (form.tipo1 as RadioNodeList).value;
     const tipo2 = (form.tipo2 as RadioNodeList).value;
     const tipo3 = (form.tipo3 as RadioNodeList).value;
@@ -30,7 +38,7 @@ function Survey() {
         },
         body: JSON.stringify({
           user: user,
-          survey: `fecha':${fecha}, Pregunta 1: ${tipo1} ,'Pregunta 2':${tipo2},'Pregunta 3':${tipo3},'Pregunta 4':${tipo4}`,
+          survey: `fecha':${fechaFormateada}, Pregunta 1: ${tipo1} ,'Pregunta 2':${tipo2},'Pregunta 3':${tipo3},'Pregunta 4':${tipo4}`,
         }),
       }
     );
@@ -93,9 +101,10 @@ function Survey() {
         <div className="diseño">
           <form onSubmit={handleSubmit}>
             <h1>Encuesta</h1>
-            <label htmlFor="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required />
-
+            <div className="bloque-fecha">
+              <label htmlFor="fecha">Fecha:</label>
+              <FechaEncuesta onFechaChange={setFecha} obligatorio={true} />
+            </div>
             <label htmlFor="pregunta1">Pregunta 1</label>
             <div className="opciones">
               <div>
