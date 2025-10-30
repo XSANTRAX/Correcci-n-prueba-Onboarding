@@ -24,6 +24,11 @@ En este proyecto se uso la extensión de react-router-dom para el manejo de las 
 Ademas tambien se utilizo la extensión de react-loading-skeleton para el manejo de los componentes de carga, la forma de instalar esta dependencia es con el scirpt: npm install react-loading-skeleton
 ```
 
+```
+Y por ultimo utlice un selector de fechas o datapicker para un estilo diferente, la forma de instalar esta dependencia es con el scirpt: npm install react-datepicker
+```
+
+
 Estado del proyecto:
 ```
 -Funcionalidad completa
