@@ -9,6 +9,15 @@ import { useNavigate } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import RegisterSkeleton from "./Skeletor-register";
 
+const validatePassword = (password: string): boolean => {
+  if (password.length < 8) return false;
+  if (!/[A-Z]/.test(password)) return false;
+  if (!/[a-z]/.test(password)) return false;
+  if (!/\d/.test(password)) return false;
+  if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) return false;
+  return true;
+};
+
 function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -32,11 +41,25 @@ function Register() {
     setSubmitting(true);
     setError("");
 
+    if (!/^\d{10}$/.test(phone.value)) {
+    setError("El número de celular debe tener exactamente 10 dígitos.");
+    setSubmitting(false);
+    return;
+    }
+
     if (password.value !== confirmPassword) {
       setError("Las contraseñas no coinciden");
       setSubmitting(false);
       return;
     }
+
+     if (!validatePassword(password.value)) {
+    setError(
+      "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial."
+    );
+    setSubmitting(false);
+    return;
+  }
 
     const usersApi = fetch(
       `https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/register`,
@@ -99,7 +122,7 @@ function Register() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo Electrónico - example@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -107,7 +130,7 @@ function Register() {
               <input
                 type="text"
                 name="name"
-                placeholder="Nombre de usuario"
+                placeholder="Nombre completo del usuario"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
