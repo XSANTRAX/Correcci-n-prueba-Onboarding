@@ -65,7 +65,7 @@ input[type="radio"] {
 }
 
 .bloque-fecha {
-  margin-bottom: 1.5rem; /* separa la fecha del resto del formulario */
+  margin-bottom: 1.5rem; 
 }
 
 .bloque-fecha label {
